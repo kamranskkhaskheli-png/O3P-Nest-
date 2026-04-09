@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>O3P Nest · All Links Hub | Mobile Optimized</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* CRITICAL FIX: prevent horizontal overflow on any device */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0a0c12, #030507);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #eef2ff;
+            padding: 16px 12px;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* header */
+        .hero {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #9aa9ff, #4f7df3);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .hero p {
+            font-size: 0.85rem;
+            color: #a3b3d6;
+            margin-top: 6px;
+        }
+
+        /* two-column layout */
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .main-content {
+            flex: 3;
+            min-width: 220px;
+            overflow-x: hidden;
+        }
+
+        .ad-sidebar {
+            flex: 1.2;
+            min-width: 160px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* universal ad wrapper: prevents overflow + allows scroll if needed */
+        .ad-responsive {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(12, 16, 28, 0.4);
+            border-radius: 16px;
+            padding: 8px 4px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .ad-responsive iframe {
+            max-width: 100%;
+            border: none;
+        }
+
+        /* force any embedded ad iframe not to break container */
+        .ad-responsive iframe[style*="width"] {
+            max-width: 100% !important;
+            height: auto;
+        }
+
+        .ad-leaderboard-wrap, .ad-horizontal-wrap {
+            overflow-x: auto;
+            text-align: center;
+            margin-bottom: 18px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 16px;
+            padding: 6px 0;
+            max-width: 100%;
+        }
+
+        /* card grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .card {
+            background: rgba(18, 22, 35, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 18px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid rgba(75, 100, 150, 0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            -webkit-tap-highlight-color: rgba(108,142,255,0.3);
+        }
+
+        .card:active {
+            transform: scale(0.97);
+            background: rgba(40, 50, 80, 0.9);
+        }
+
+        .card-icon {
+            font-size: 2.4rem;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #f0f3ff, #b9c8ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .card-desc {
+            font-size: 0.7rem;
+            color: #9aabcf;
+            margin-top: 6px;
+        }
+
+        /* links panel */
+        .links-panel {
+            background: rgba(8, 12, 22, 0.65);
+            backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 16px;
+            border: 1px solid rgba(72, 97, 147, 0.5);
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 2px solid #2c3f66;
+            padding-bottom: 10px;
+            margin-bottom: 18px;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            background: linear-gradient(to right, #c9ddff, #8aa9ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            word-break: break-word;
+        }
+
+        .badge {
+            background: #1e2a44;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            color: #b9ceff;
+            white-space: nowrap;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 10px;
+        }
+
+        .link-item {
+            background: rgba(20, 26, 44, 0.75);
+            border-radius: 18px;
+            border: 1px solid #2a3457;
+            transition: 0.15s;
+        }
+
+        .link-item a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            text-decoration: none;
+            color: #e2ecff;
+            font-weight: 500;
+            font-size: 0.85rem;
+            word-break: break-word;
+            border-radius: 18px;
+        }
+
+        .link-item a:active {
+            background: #2a345f;
+            transform: translateX(4px);
+        }
+
+        .link-icon {
+            font-size: 1rem;
+            opacity: 0.8;
+            flex-shrink: 0;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            margin-top: 30px;
+            color: #5e739b;
+            border-top: 1px solid #1a233a;
+            padding-top: 16px;
+        }
+
+        /* ========== MOBILE FIRST ENHANCEMENTS: FIX RATIO & OVERFLOW ========== */
+        @media (max-width: 700px) {
+            body {
+                padding: 12px 10px;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .dashboard {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            /* SIDEBAR: NO HORIZONTAL ROW — STACK VERTICALLY (fixes overflow) */
+            .ad-sidebar {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+            .ad-sidebar > div {
+                flex: none;
+                width: 100%;
+                max-width: 320px;
+                min-width: unset;
+                margin: 0 auto;
+            }
+            
+            /* adjust cards grid for better spacing */
+            .cards-grid {
+                gap: 12px;
+            }
+            .card {
+                padding: 14px 6px;
+            }
+            .card-title {
+                font-size: 1.1rem;
+            }
+            
+            /* links become full-width on smaller phones */
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+            .badge {
+                font-size: 0.65rem;
+                white-space: normal;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .card {
+                padding: 12px 4px;
+            }
+            .card-icon {
+                font-size: 2rem;
+            }
+            .card-title {
+                font-size: 1rem;
+            }
+            .card-desc {
+                font-size: 0.65rem;
+            }
+            .links-panel {
+                padding: 12px;
+            }
+            .link-item a {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* extra safety for super narrow screens (<= 380px) */
+        @media (max-width: 380px) {
+            .cards-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .badge {
+                white-space: normal;
+                font-size: 0.6rem;
+            }
+        }
+        
+        /* improve touch targets & ensure no element overflows */
+        .link-item a, .card {
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        
+        /* ads scroll hints + safety */
+        .ad-leaderboard-wrap::-webkit-scrollbar, 
+        .ad-horizontal-wrap::-webkit-scrollbar,
+        .ad-responsive::-webkit-scrollbar {
+            height: 3px;
+        }
+        
+        /* additional ad wrapper for profitable network */
+        .profitable-safe-wrap {
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-width: 100%;
+            text-align: center;
+            margin: 12px 0;
+            padding: 4px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <div class="hero">
+        <h1>🎬 O3P Nest — All Links</h1>
+        <p>✦ tap a category → see all links → choose what to open ✦</p>
+    </div>
+
+    <!-- 728x90 Leaderboard Ad (Responsive container) -->
+    <div class="ad-leaderboard-wrap">
+        <div class="ad-responsive">
+            <script>
+                try {
+                    atOptions = { 'key':'33723996d55851099c5f0d04289b0403','format':'iframe','height':90,'width':728,'params':{} };
+                    document.write('<script src="https://www.highperformanceformat.com/33723996d55851099c5f0d04289b0403/invoke.js"><\/script>');
+                } catch(e) { console.warn("Ad error", e); }
+            </script>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="main-content">
+            <!-- Category Cards -->
+            <div class="cards-grid">
+                <div class="card" data-category="movies">
+                    <div class="card-icon">🎥🍿</div>
+                    <div class="card-title">Movies</div>
+                    <div class="card-desc">Streaming & classics</div>
+                </div>
+                <div class="card" data-category="anime">
+                    <div class="card-icon">✨📺</div>
+                    <div class="card-title">Anime / Cartoons</div>
+                    <div class="card-desc">Dubs, subs, rare gems</div>
+                </div>
+                <div class="card" data-category="livetv">
+                    <div class="card-icon">📡⚽</div>
+                    <div class="card-title">Live TV</div>
+                    <div class="card-desc">Sports, news, m3u8</div>
+                </div>
+                <div class="card" data-category="software">
+                    <div class="card-icon">💻⚙️</div>
+                    <div class="card-title">Software</div>
+                    <div class="card-desc">Apps, mods, tools</div>
+                </div>
+            </div>
+
+            <!-- Dynamic Links Panel -->
+            <div id="dynamicLinksPanel" class="links-panel">
+                <div class="section-header">
+                    <h2>✨ explore hub</h2>
+                    <span class="badge">tap card → links appear below</span>
+                </div>
+                <div id="linksContainer" style="min-height: 100px;">
+                    <div style="text-align: center; padding: 24px 12px; color: #9aa9cc;">
+                        ⚡ Choose Movies, Anime, Live TV or Software<br>
+                        📋 Full website list will show here.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 468x60 horizontal banner ad (mobile-friendly wrapper) -->
+            <div class="ad-horizontal-wrap">
+                <div class="ad-responsive">
+                    <script>
+                        try {
+                            atOptions = { 'key':'ba88400ae15217130ee52f796bb0c64b','format':'iframe','height':60,'width':468,'params':{} };
+                            document.write('<script src="https://www.highperformanceformat.com/ba88400ae15217130ee52f796bb0c64b/invoke.js"><\/script>');
+                        } catch(e) {}
+                    </script>
+                </div>
+            </div>
+
+            <!-- profitablecpmratenetwork container with overflow protection -->
+            <div class="profitable-safe-wrap">
+                <script async="async" data-cfasync="false" src="https://pl29094192.profitablecpmratenetwork.com/82a2e0161961ad5483831fd4fc1cc4f7/invoke.js"></script>
+                <div id="container-82a2e0161961ad5483831fd4fc1cc4f7"></div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDEBAR: vertical ads - now fully responsive without horizontal break -->
+        <div class="ad-sidebar">
+            <div class="ad-responsive">
+                <script>
+                    try {
+                        atOptions = { 'key':'dbb334ca391f997c1ef3d56d99a01b81','format':'iframe','height':600,'width':160,'params':{} };
+                        document.write('<script src="https://www.highperformanceformat.com/dbb334ca391f997c1ef3d56d99a01b81/invoke.js"><\/script>');
+                    } catch(e) {}
+                </script>
+            </div>
+            <div class="ad-responsive">
+                <script>
+                    try {
+                        atOptions = { 'key':'00c498f28e8a8d97959e6bd7e86155e7','format':'iframe','height':300,'width':160,'params':{} };
+                        document.write('<script src="https://www.highperformanceformat.com/00c498f28e8a8d97959e6bd7e86155e7/invoke.js"><\/script>');
+                    } catch(e) {}
+                </script>
+            </div>
+            <div class="ad-responsive" style="background: transparent;">
+                <script src="https://pl29094193.profitablecpmratenetwork.com/66/f2/d6/66f2d6e4a69564ddfee5a88f222da9ea.js"></script>
+            </div>
+        </div>
+    </div>
+    <footer>
+        © O3P Nest — all links open in new tabs • works on all devices & apps
+    </footer>
+</div>
+
+<script>
+    // ======================== COMPLETE LINKS (preserved exactly) ========================
+    const CATEGORY_LINKS = {
+        movies: [
+            "https://flixer.su/",
+            "https://sflix.ps/home",
+            "https://www.cineby.app/",
+            "https://www.bitcine.app/",
+            "https://veloratv.ru/",
+            "https://xprime.tv/",
+            "https://www.fmovies.gd/",
+            "https://cinegram.net/home",
+            "https://1337x.to/home/",
+            "https://www.docplus.com/",
+            "https://www.documentaryarea.com/",
+            "https://vimeo.com/1059834885/c3ab398d42",
+            "https://pstream.mov/"
+        ],
+        anime: [
+            "https://watchanimeworld.net/",
+            "https://animesalt.ac/",
+            "https://deadtoons.org/",
+            "https://rareanimes.app/",
+            "https://animekai.to/",
+            "https://xprime.tv/",
+            "https://kaa.mx/",
+            "https://hianimez.to/",
+            "https://animenosub.to/",
+            "https://rivestream.org/"
+        ],
+        livetv: [
+            "https://famelack.com/",
+            "https://gostreameast.link/",
+            "https://sportyhunter.com/",
+            "https://watchsports.to/",
+            "https://streamed.su/",
+            "https://tvpass.org/",
+            "https://rivestream.org/livesports",
+            "https://www.livehdtv.com/",
+            "https://zhangboheng.github.io/Easy-Web-TV-M3u8/routes/countries.html"
+        ],
+        software: [
+            "https://appdoze.net/",
+            "https://scloud.ws/",
+            "https://www.downloadpirate.com/",
+            "https://aedownload.com/",
+            "https://audioz.download/",
+            "https://diakov.net/",
+            "https://www.downloadha.com/",
+            "https://getmodsapk.com/"
+        ]
+    };
+
+    const CATEGORY_META = {
+        movies: { name: "🎬 Movies & Streaming", icon: "🎞️" },
+        anime: { name: "✨ Anime / Cartoons", icon: "🌸" },
+        livetv: { name: "📺 Live TV & Sports", icon: "🔴" },
+        software: { name: "🛠️ Software & Mods", icon: "⚡" }
+    };
+
+    // render links for selected category with improved mobile visibility
+    function renderCategoryLinks(categoryKey) {
+        const linksArray = CATEGORY_LINKS[categoryKey];
+        const meta = CATEGORY_META[categoryKey] || { name: categoryKey, icon: "🔗" };
+        const container = document.getElementById("linksContainer");
+        if (!linksArray || linksArray.length === 0) {
+            container.innerHTML = `<div style="padding:20px;text-align:center;color:#b9c6ea;">⚠️ No links found.</div>`;
+            return;
+        }
+
+        let html = `<div class="links-grid">`;
+        linksArray.forEach(link => {
+            let display = link.replace(/^https?:\/\//, '').replace(/\/$/, '').substring(0, 55);
+            if (display.length > 52) display = display.substring(0, 49) + '...';
+            html += `
+                <div class="link-item">
+                    <a href="${link}" target="_blank" rel="noopener noreferrer">
+                        <span class="link-icon">🔗</span>
+                        <span>${display}</span>
+                    </a>
+                </div>
+            `;
+        });
+        html += `</div>`;
+        
+        const header = document.querySelector("#dynamicLinksPanel .section-header h2");
+        if (header) header.innerHTML = `${meta.icon} ${meta.name}  ·  ${linksArray.length} resources`;
+        container.innerHTML = html;
+    }
+
+    // category click handler (only shows links, never auto-opens websites)
+    function onCategoryClick(category) {
+        renderCategoryLinks(category);
+        const panel = document.getElementById("dynamicLinksPanel");
+        if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // robust event binding for cards (mobile/desktop)
+    function bindCards() {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            let category = card.getAttribute('data-category');
+            if (!category) {
+                const titleElem = card.querySelector('.card-title');
+                if (titleElem) {
+                    const txt = titleElem.innerText.toLowerCase();
+                    if (txt.includes('movie')) category = 'movies';
+                    else if (txt.includes('anime') || txt.includes('cartoon')) category = 'anime';
+                    else if (txt.includes('live tv')) category = 'livetv';
+                    else if (txt.includes('software')) category = 'software';
+                }
+            }
+            if (!category) return;
+            // remove previous listeners to avoid duplicates, but fresh add
+            const newCard = card.cloneNode(true);
+            card.parentNode.replaceChild(newCard, card);
+            newCard.addEventListener('click', (e) => {
+                e.preventDefault();
+                onCategoryClick(category);
+            });
+            // also keep any existing attribute
+            newCard.setAttribute('data-category', category);
+        });
+    }
+
+    // additional safety: ensure initial content & handle any iframe overflow from ads
+    function finalMobileAdjust() {
+        // remove potential inline width issues from some external iframes
+        const allIframes = document.querySelectorAll('.ad-responsive iframe');
+        allIframes.forEach(iframe => {
+            if (iframe.width && parseInt(iframe.width) > 300) {
+                iframe.style.maxWidth = '100%';
+                iframe.style.height = 'auto';
+            }
+        });
+        // double-check any hidden overflow on body
+        document.body.style.overflowX = 'hidden';
+    }
+
+    // init everything after DOM ready
+    window.addEventListener('DOMContentLoaded', () => {
+        bindCards();
+        finalMobileAdjust();
+        const container = document.getElementById("linksContainer");
+        if (container && (!container.innerHTML || container.innerHTML.trim() === "" || container.innerText.includes("Choose Movies"))) {
+            container.innerHTML = `<div style="padding:20px;text-align:center;color:#9aa9cc;">✨ Tap any card above to see all links ✨</div>`;
+        }
+        // add fallback for iOS/Android double-tap zoom etc
+        const styleReset = document.createElement('style');
+        styleReset.textContent = `img, iframe { max-width: 100%; } .ad-responsive { max-width: 100%; }`;
+        document.head.appendChild(styleReset);
+    });
+    
+    // re-check after any possible ad script injection (small delay)
+    window.addEventListener('load', () => {
+        finalMobileAdjust();
+        // ensure sidebar ads don't cause horizontal flow
+        const sidebars = document.querySelectorAll('.ad-sidebar .ad-responsive');
+        sidebars.forEach(sb => {
+            sb.style.overflowX = 'auto';
+            sb.style.maxWidth = '100%';
+        });
+    });
+</script>
+</body>
+</html>
